@@ -45,11 +45,10 @@ void creerBinome(t_etudiant & e1, t_etudiant & e2, t_tab_binome & tab){
     }
 }
 
-//FIXME: etudiant seul
 //3 DONE   
 void notePourBinome(t_etudiant & etu, double & note){ // note en ref pour acceder a l'adresse réelle, non pas celle du parametre qui est locale
     if(etu.p_binome == nullptr){
-        cout<<"cet etudiant n'a pas de binome, donc pas de note"<<endl; // NOTE: si nombre de binomes impair, alors un etudiant sera seul dans un binome
+        cout<<"cet etudiant n'a pas de binome, donc pas de note"<<endl; 
     }else{
         etu.p_note = &note;
     }
@@ -90,7 +89,6 @@ int main() {
         nbBi = (N/2) + 1;
     }
  
-
     t_etudiant* tab_etu; 
     tab_etu = new t_etudiant[nbBi*2]; //N=3, Si t_etudiant[N] => tableau de 3 etudiants, l'etudiant fantome doit etre alors inclus si N est impaire: [(anna, aya) ;; (chris, etuFantome)]
     if(N%2 != 0){
@@ -107,7 +105,38 @@ int main() {
         cout<<"Nom etudiant"<<endl;
         cin>>tab_etu[i].nom;
     }
-    
+
+
+
+    /*main according to the worksheet
+    ALGO demandant au user deux etu, formant un binome des deux etu, leur affectant une note saisie, affichant leurs noms, leur note, puis les dissociant
+    */
+    t_etudiant etu1, etu2;
+    string s1, s2;
+    cout<<"Nom du 1er etudiant"<<endl;
+    cin>>s1;
+    cout<<"Nom du 2e etudiant "<<endl;
+    cin>>s2;
+
+    initEtu(s1, etu1);
+    initEtu(s2, etu2);
+
+    //FORMATION BINOME
+    creerBinome(etu1, etu2, tTabBinome);
+
+    //AFFECTATION NOTE
+    double mark;
+    cout<<"Note du binome: "<<endl;
+    cin>>mark;
+    notePourBinome(etu1, mark);
+
+    //AFFICHAGE BINOME
+    infoBinome(etu1);
+
+    //DISSOCIER BINOME
+    dissocier(etu1);
+
+
 
     delete[] tab_etu;
     tab_etu = nullptr;
