@@ -78,8 +78,18 @@ int main() {
         cin>>N;
     }
     
-    int nbBi = (N/2) + 1; // nombre de binomes possibles... si impair, l'etudiant seul sera dans un binome mais aura une moyenne plus élevée
+    int nbBi; //nombre de binomes possibles
+
+    if(N%2 == 0){
+        nbBi = N/2;
+    }else{
+        nbBi = (N/2) + 1;
+    }
     
+    t_etudiant etuFantome;// servira quand il y aura un nombre impair d'étudiants
+
+
+
     t_etudiant* tab_etu; 
     tab_etu = new t_etudiant[N];
     t_tab_binome tTabBinome;
