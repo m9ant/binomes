@@ -19,7 +19,11 @@ struct t_tab_binome {
     int occup;
 };
 
-//1 TODO: init etudiant sans binome sans note
+t_etudiant etuFantome;// servira quand il y aura un nombre impair d'étudiants
+
+
+
+//1 DONE
 void initEtu(string nomEtu, t_etudiant & etudiant){
     etudiant.nom = nomEtu;
     etudiant.p_binome = nullptr;
@@ -51,7 +55,7 @@ void notePourBinome(t_etudiant & etu, double & note){ // note en ref pour accede
     }
 }
 
-//4 TODO: (e1), afficher e1 + e2 + note
+//4 DONE
 void infoBinome(t_etudiant & etu){
     if(etu.p_note == nullptr){
         cout<<"cet etudiant n'a pas de binome/note"<<endl;
@@ -62,7 +66,7 @@ void infoBinome(t_etudiant & etu){
     }
 }
 
-//5 TODO: (e) e ayant un binome, dissocier et retirer note
+//5 DONE
 void dissocier(t_etudiant & etu){
     etu.p_binome->p_binome = nullptr; //on dissocie en premier l'autre etudiant ensuite l'etudiant passé en paramètre
     etu.p_binome = nullptr;
@@ -85,27 +89,25 @@ int main() {
     }else{
         nbBi = (N/2) + 1;
     }
-    
-    t_etudiant etuFantome;// servira quand il y aura un nombre impair d'étudiants
-
-
+ 
 
     t_etudiant* tab_etu; 
-    tab_etu = new t_etudiant[N];
+    tab_etu = new t_etudiant[nbBi*2]; //N=3, Si t_etudiant[N] => tableau de 3 etudiants, l'etudiant fantome doit etre alors inclus si N est impaire: [(anna, aya) ;; (chris, etuFantome)]
+    if(N%2 != 0){
+        tab_etu[(nbBi*2)-1] = etuFantome; //eg: quand N=3, je place l'etudiant fantome à la dernière case du talbeau;
+    }
+
     t_tab_binome tTabBinome;
-    
     tTabBinome.tab_binome = new t_binome[nbBi];
     tTabBinome.capa = nbBi;
-    tTabBinome.occup = 0; // tableau encore vide
+    tTabBinome.occup = 0;
 
-    //remplir un tableau d'etudiant
+    //remplir un tableau d'etudiant, si etuFantome existe, pas de probleme, for() s'arrete avant d'atteindre N, N= (nbBi*2)-1
     for(int i=0; i<N; i++){
         cout<<"Nom etudiant"<<endl;
         cin>>tab_etu[i].nom;
     }
-
-
-
+    
 
     delete[] tab_etu;
     tab_etu = nullptr;
