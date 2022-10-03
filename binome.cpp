@@ -41,9 +41,14 @@ void creerBinome(t_etudiant & e1, t_etudiant & e2, t_tab_binome & tab){
     }
 }
 
-//3 TODO: (e, note) e ayant un binome, affecter une note au binome   
-void notePourBinome(){
-    
+//FIXME: etudiant seul
+//3 DONE   
+void notePourBinome(t_etudiant & etu, double & note){ // note en ref pour acceder a l'adresse réelle, non pas celle du parametre qui est locale
+    if(etu.p_binome == nullptr){
+        cout<<"cet etudiant n'a pas de binome, donc pas de note"<<endl; // NOTE: si nombre de binomes impair, alors un etudiant sera seul dans un binome
+    }else{
+        etu.p_note = &note;
+    }
 }
 
 //4 TODO: (e1), afficher e1 + e2 + note
