@@ -52,8 +52,23 @@ void notePourBinome(t_etudiant & etu, double & note){ // note en ref pour accede
 }
 
 //4 TODO: (e1), afficher e1 + e2 + note
+void infoBinome(t_etudiant & etu){
+    if(etu.p_note == nullptr){
+        cout<<"cet etudiant n'a pas de binome/note"<<endl;
+    }else{
+        cout<<"Nom etu 1: "<<etu.nom<<endl;
+        cout<<"Nom etu 2: "<<etu.p_binome->nom<<endl;
+        cout<<"La note  : "<<*(etu.p_note)<<endl;
+    }
+}
 
 //5 TODO: (e) e ayant un binome, dissocier et retirer note
+void dissocier(t_etudiant & etu){
+    etu.p_binome->p_binome = nullptr; //on dissocie en premier l'autre etudiant ensuite l'etudiant passé en paramètre
+    etu.p_binome = nullptr;
+    etu.p_note = nullptr;
+}
+
 
 int main() {
 
@@ -73,6 +88,7 @@ int main() {
     tTabBinome.capa = nbBi;
     tTabBinome.occup = 0; // tableau encore vide
 
+    //remplir un tableau d'etudiant
     for(int i=0; i<N; i++){
         cout<<"Nom etudiant"<<endl;
         cin>>tab_etu[i].nom;
