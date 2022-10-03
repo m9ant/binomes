@@ -20,7 +20,7 @@ struct t_tab_binome {
 };
 
 //1 TODO: init etudiant sans binome sans note
-void init_etudiant(string nomEtu, t_etudiant & etudiant){
+void initEtu(string nomEtu, t_etudiant & etudiant){
     etudiant.nom = nomEtu;
     etudiant.p_binome = nullptr;
     etudiant.p_note = nullptr;
@@ -42,7 +42,9 @@ void creerBinome(t_etudiant & e1, t_etudiant & e2, t_tab_binome & tab){
 }
 
 //3 TODO: (e, note) e ayant un binome, affecter une note au binome   
-
+void notePourBinome(){
+    
+}
 
 //4 TODO: (e1), afficher e1 + e2 + note
 
